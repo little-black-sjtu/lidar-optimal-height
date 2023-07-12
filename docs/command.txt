@@ -1,0 +1,24 @@
+python -m pcdet.datasets.custom.custom_dataset create_custom_infos tools/cfgs/dataset_configs/custom_dataset.yaml
+python -m pcdet.datasets.custom.custom_dataset count_evaluation_boxes
+python -m pcdet.datasets.custom.custom_dataset generate_labels
+python -m pcdet.datasets.custom.custom_dataset generate_splits
+python -m pcdet.datasets.custom.custom_dataset fuse_background_and_foreground
+python -m pcdet.datasets.custom.custom_dataset mask_extra_boxes_val
+bash scripts/dist_train.sh 2 --cfg_file cfgs/custom_models/pillarnet.yaml --batch_size=24 --epochs=100 --extra_tag '05'
+bash scripts/dist_train.sh 4 --cfg_file cfgs/custom_models/pointrcnn.yaml --batch_size=28 --epochs=100 --extra_tag '18'
+bash scripts/dist_train.sh 2 --cfg_file cfgs/custom_models/pointrcnn.yaml --batch_size=16 --epochs=100 --extra_tag '05'
+
+bash scripts/dist_train.sh 2 --cfg_file cfgs/custom_models/second_ct3d.yaml --batch_size=12 --epochs=100 --extra_tag '18'
+
+python train.py --cfg_file cfgs/custom_models/pointrcnn.yaml --batch_size=7 --epochs=100 --extra_tag '16_hw_large'
+
+python train.py --cfg_file cfgs/custom_models/second_ct3d.yaml --batch_size=8 --epochs=100 --extra_tag '18'
+
+python train.py --cfg_file cfgs/custom_models/pointrcnn.yaml --batch_size=8 --epochs=120 --extra_tag '10'
+python train.py --cfg_file cfgs/custom_models/second.yaml --batch_size=8 --epochs=120 --extra_tag '18'
+python train.py --cfg_file cfgs/custom_models/pointrcnn.yaml --batch_size=8 --epochs=120 --extra_tag '18'
+python test.py --cfg_file cfgs/custom_models/pillarnet.yaml --batch_size 12 --ckpt ../output/custom_models/pillarnet/18/ckpt/checkpoint_epoch_100.pth --extra_tag '18'
+python test.py --cfg_file cfgs/custom_models/second.yaml --batch_size 16 --ckpt ../output/custom_models/second/18/ckpt/checkpoint_epoch_100.pth --extra_tag 'ranges'
+
+bash scripts/dist_test.sh 3 --cfg_file cfgs/custom_models/pointrcnn.yaml --batch_size=24
+python test.py --cfg_file cfgs/custom_models/second.yaml --batch_size 10 --ckpt ../output/custom_models/second/16_hw_large/ckpt/checkpoint_epoch_120.pth --extra_tag '16_hw_large' --eval_tag 'filter_by_range_deleted'

@@ -1,0 +1,151 @@
+2023-05-23 12:27:25,245   INFO  **********************Start logging**********************
+2023-05-23 12:27:25,245   INFO  CUDA_VISIBLE_DEVICES=ALL
+2023-05-23 12:27:25,245   INFO  cfg_file         cfgs/custom_models/pillarnet.yaml
+2023-05-23 12:27:25,245   INFO  batch_size       12
+2023-05-23 12:27:25,245   INFO  workers          4
+2023-05-23 12:27:25,245   INFO  extra_tag        18
+2023-05-23 12:27:25,245   INFO  ckpt             ../output/custom_models/pillarnet/18/ckpt/checkpoint_epoch_100.pth
+2023-05-23 12:27:25,245   INFO  pretrained_model None
+2023-05-23 12:27:25,245   INFO  launcher         none
+2023-05-23 12:27:25,245   INFO  tcp_port         18888
+2023-05-23 12:27:25,245   INFO  local_rank       0
+2023-05-23 12:27:25,245   INFO  set_cfgs         None
+2023-05-23 12:27:25,245   INFO  max_waiting_mins 30
+2023-05-23 12:27:25,245   INFO  start_epoch      0
+2023-05-23 12:27:25,245   INFO  eval_tag         default
+2023-05-23 12:27:25,245   INFO  eval_all         False
+2023-05-23 12:27:25,245   INFO  ckpt_dir         None
+2023-05-23 12:27:25,245   INFO  save_to_file     False
+2023-05-23 12:27:25,246   INFO  infer_time       False
+2023-05-23 12:27:25,246   INFO  cfg.ROOT_DIR: /root/autodl-tmp/OpenPCDet
+2023-05-23 12:27:25,246   INFO  cfg.LOCAL_RANK: 0
+2023-05-23 12:27:25,246   INFO  cfg.CLASS_NAMES: ['Car']
+2023-05-23 12:27:25,246   INFO  ----------- DATA_CONFIG -----------
+2023-05-23 12:27:25,246   INFO  cfg.DATA_CONFIG.DATASET: CustomDataset
+2023-05-23 12:27:25,246   INFO  cfg.DATA_CONFIG.DATA_PATH: ../data/custom18
+2023-05-23 12:27:25,246   INFO  cfg.DATA_CONFIG.POINT_CLOUD_RANGE: [-2, -15.2, -2, 150, 15.2, 4]
+2023-05-23 12:27:25,246   INFO  ----------- MAP_CLASS_TO_KITTI -----------
+2023-05-23 12:27:25,246   INFO  cfg.DATA_CONFIG.MAP_CLASS_TO_KITTI.Car: Car
+2023-05-23 12:27:25,246   INFO  cfg.DATA_CONFIG.MAP_CLASS_TO_KITTI.Pedestrian: Pedestrian
+2023-05-23 12:27:25,246   INFO  cfg.DATA_CONFIG.MAP_CLASS_TO_KITTI.Cyclist: Cyclist
+2023-05-23 12:27:25,246   INFO  ----------- DATA_SPLIT -----------
+2023-05-23 12:27:25,246   INFO  cfg.DATA_CONFIG.DATA_SPLIT.train: train
+2023-05-23 12:27:25,246   INFO  cfg.DATA_CONFIG.DATA_SPLIT.test: val
+2023-05-23 12:27:25,246   INFO  ----------- INFO_PATH -----------
+2023-05-23 12:27:25,246   INFO  cfg.DATA_CONFIG.INFO_PATH.train: ['custom_infos_train.pkl']
+2023-05-23 12:27:25,246   INFO  cfg.DATA_CONFIG.INFO_PATH.test: ['custom_infos_val.pkl']
+2023-05-23 12:27:25,246   INFO  ----------- POINT_FEATURE_ENCODING -----------
+2023-05-23 12:27:25,246   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.encoding_type: absolute_coordinates_encoding
+2023-05-23 12:27:25,246   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.used_feature_list: ['x', 'y', 'z', 'intensity']
+2023-05-23 12:27:25,246   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.src_feature_list: ['x', 'y', 'z', 'intensity']
+2023-05-23 12:27:25,246   INFO  ----------- DATA_AUGMENTOR -----------
+2023-05-23 12:27:25,246   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.DISABLE_AUG_LIST: ['placeholder']
+2023-05-23 12:27:25,246   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.AUG_CONFIG_LIST: [{'NAME': 'gt_sampling', 'USE_ROAD_PLANE': False, 'DB_INFO_PATH': ['custom_dbinfos_train.pkl'], 'PREPARE': {'filter_by_min_points': ['Car:5', 'Pedestrian:5', 'Cyclist:5']}, 'SAMPLE_GROUPS': ['Car:20', 'Pedestrian:15', 'Cyclist:15'], 'NUM_POINT_FEATURES': 4, 'DATABASE_WITH_FAKELIDAR': False, 'REMOVE_EXTRA_WIDTH': [0.0, 0.0, 0.0], 'LIMIT_WHOLE_SCENE': True}]
+2023-05-23 12:27:25,247   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR: [{'NAME': 'mask_points_and_boxes_outside_range', 'REMOVE_OUTSIDE_BOXES': True}, {'NAME': 'shuffle_points', 'SHUFFLE_ENABLED': {'train': True, 'test': False}}, {'NAME': 'transform_points_to_voxels', 'VOXEL_SIZE': [0.1, 0.1, 0.15], 'MAX_POINTS_PER_VOXEL': 5, 'MAX_NUMBER_OF_VOXELS': {'train': 150000, 'test': 150000}}]
+2023-05-23 12:27:25,247   INFO  cfg.DATA_CONFIG._BASE_CONFIG_: cfgs/dataset_configs/custom_dataset.yaml
+2023-05-23 12:27:25,247   INFO  ----------- MODEL -----------
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.NAME: PillarNet
+2023-05-23 12:27:25,247   INFO  ----------- VFE -----------
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.VFE.NAME: DynamicPillarVFESimple2D
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.VFE.WITH_DISTANCE: False
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.VFE.USE_ABSLOTE_XYZ: True
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.VFE.USE_CLUSTER_XYZ: False
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.VFE.USE_NORM: True
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.VFE.NUM_FILTERS: [32]
+2023-05-23 12:27:25,247   INFO  ----------- BACKBONE_3D -----------
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.BACKBONE_3D.NAME: PillarBackBone8x
+2023-05-23 12:27:25,247   INFO  ----------- BACKBONE_2D -----------
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.BACKBONE_2D.NAME: BaseBEVBackboneV1
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.BACKBONE_2D.LAYER_NUMS: [5, 5]
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.BACKBONE_2D.LAYER_STRIDES: [1, 2]
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.BACKBONE_2D.NUM_FILTERS: [256, 256]
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.BACKBONE_2D.UPSAMPLE_STRIDES: [1, 2]
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.BACKBONE_2D.NUM_UPSAMPLE_FILTERS: [128, 128]
+2023-05-23 12:27:25,247   INFO  ----------- DENSE_HEAD -----------
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.DENSE_HEAD.NAME: AnchorHeadSingle
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.DENSE_HEAD.CLASS_AGNOSTIC: False
+2023-05-23 12:27:25,247   INFO  cfg.MODEL.DENSE_HEAD.USE_DIRECTION_CLASSIFIER: True
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.DENSE_HEAD.DIR_OFFSET: 0.78539
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.DENSE_HEAD.DIR_LIMIT_OFFSET: 0.0
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.DENSE_HEAD.NUM_DIR_BINS: 2
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.DENSE_HEAD.ANCHOR_GENERATOR_CONFIG: [{'class_name': 'Car', 'anchor_sizes': [[3.9, 1.6, 1.56]], 'anchor_rotations': [0, 1.57], 'anchor_bottom_heights': [-1.78], 'align_center': False, 'feature_map_stride': 8, 'matched_threshold': 0.6, 'unmatched_threshold': 0.45}, {'class_name': 'Pedestrian', 'anchor_sizes': [[0.8, 0.6, 1.73]], 'anchor_rotations': [0, 1.57], 'anchor_bottom_heights': [-0.6], 'align_center': False, 'feature_map_stride': 8, 'matched_threshold': 0.5, 'unmatched_threshold': 0.35}, {'class_name': 'Cyclist', 'anchor_sizes': [[1.76, 0.6, 1.73]], 'anchor_rotations': [0, 1.57], 'anchor_bottom_heights': [-0.6], 'align_center': False, 'feature_map_stride': 8, 'matched_threshold': 0.5, 'unmatched_threshold': 0.35}]
+2023-05-23 12:27:25,248   INFO  ----------- TARGET_ASSIGNER_CONFIG -----------
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.NAME: AxisAlignedTargetAssigner
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.POS_FRACTION: -1.0
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.SAMPLE_SIZE: 512
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.NORM_BY_NUM_EXAMPLES: False
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.MATCH_HEIGHT: False
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.BOX_CODER: ResidualCoder
+2023-05-23 12:27:25,248   INFO  ----------- LOSS_CONFIG -----------
+2023-05-23 12:27:25,248   INFO  ----------- LOSS_WEIGHTS -----------
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.cls_weight: 1.0
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loc_weight: 2.0
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.dir_weight: 0.2
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.code_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+2023-05-23 12:27:25,248   INFO  ----------- POST_PROCESSING -----------
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.POST_PROCESSING.RECALL_THRESH_LIST: [0.3, 0.5, 0.7]
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.POST_PROCESSING.SCORE_THRESH: 0.1
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.POST_PROCESSING.OUTPUT_RAW_SCORE: False
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.POST_PROCESSING.EVAL_METRIC: kitti
+2023-05-23 12:27:25,248   INFO  ----------- NMS_CONFIG -----------
+2023-05-23 12:27:25,248   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.MULTI_CLASSES_NMS: False
+2023-05-23 12:27:25,249   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_TYPE: nms_gpu
+2023-05-23 12:27:25,249   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_THRESH: 0.01
+2023-05-23 12:27:25,249   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_PRE_MAXSIZE: 4096
+2023-05-23 12:27:25,249   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_POST_MAXSIZE: 500
+2023-05-23 12:27:25,249   INFO  ----------- OPTIMIZATION -----------
+2023-05-23 12:27:25,249   INFO  cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU: 4
+2023-05-23 12:27:25,249   INFO  cfg.OPTIMIZATION.NUM_EPOCHS: 80
+2023-05-23 12:27:25,249   INFO  cfg.OPTIMIZATION.OPTIMIZER: adam_onecycle
+2023-05-23 12:27:25,249   INFO  cfg.OPTIMIZATION.LR: 0.003
+2023-05-23 12:27:25,249   INFO  cfg.OPTIMIZATION.WEIGHT_DECAY: 0.01
+2023-05-23 12:27:25,249   INFO  cfg.OPTIMIZATION.MOMENTUM: 0.9
+2023-05-23 12:27:25,249   INFO  cfg.OPTIMIZATION.MOMS: [0.95, 0.85]
+2023-05-23 12:27:25,249   INFO  cfg.OPTIMIZATION.PCT_START: 0.4
+2023-05-23 12:27:25,249   INFO  cfg.OPTIMIZATION.DIV_FACTOR: 10
+2023-05-23 12:27:25,249   INFO  cfg.OPTIMIZATION.DECAY_STEP_LIST: [35, 45]
+2023-05-23 12:27:25,249   INFO  cfg.OPTIMIZATION.LR_DECAY: 0.1
+2023-05-23 12:27:25,249   INFO  cfg.OPTIMIZATION.LR_CLIP: 1e-07
+2023-05-23 12:27:25,249   INFO  cfg.OPTIMIZATION.LR_WARMUP: False
+2023-05-23 12:27:25,249   INFO  cfg.OPTIMIZATION.WARMUP_EPOCH: 1
+2023-05-23 12:27:25,249   INFO  cfg.OPTIMIZATION.GRAD_NORM_CLIP: 10
+2023-05-23 12:27:25,249   INFO  cfg.TAG: pillarnet
+2023-05-23 12:27:25,249   INFO  cfg.EXP_GROUP_PATH: custom_models
+2023-05-23 12:27:25,250   INFO  Loading Custom dataset.
+2023-05-23 12:27:25,263   INFO  Total samples for CUSTOM dataset: 2290
+2023-05-23 12:27:29,607   INFO  ==> Loading parameters from checkpoint ../output/custom_models/pillarnet/18/ckpt/checkpoint_epoch_100.pth to GPU
+2023-05-23 12:27:29,683   INFO  ==> Checkpoint trained from version: pcdet+0.6.0+02ac3e1
+2023-05-23 12:27:29,696   INFO  ==> Done (loaded 181/181)
+2023-05-23 12:27:29,705   INFO  *************** EPOCH 100 EVALUATION *****************
+2023-05-23 12:27:46,931   INFO  *************** Performance of EPOCH 100 *****************
+2023-05-23 12:27:46,931   INFO  Generate label finished(sec_per_example: 0.0075 second).
+2023-05-23 12:27:46,931   INFO  recall_roi_0.3: 0.000000
+2023-05-23 12:27:46,931   INFO  recall_rcnn_0.3: 0.950850
+2023-05-23 12:27:46,931   INFO  recall_roi_0.5: 0.000000
+2023-05-23 12:27:46,931   INFO  recall_rcnn_0.5: 0.926275
+2023-05-23 12:27:46,931   INFO  recall_roi_0.7: 0.000000
+2023-05-23 12:27:46,931   INFO  recall_rcnn_0.7: 0.850142
+2023-05-23 12:27:46,933   INFO  Average predicted number of objects(2290 samples): 6.873
+2023-05-23 12:27:58,604   INFO  Car AP@0.70, 0.70, 0.70:
+bbox AP:98.7632, 98.7632, 98.7632
+bev  AP:89.3373, 89.3373, 89.3373
+3d   AP:80.1701, 80.1701, 80.1701
+aos  AP:92.62, 92.62, 92.62
+Car AP_R40@0.70, 0.70, 0.70:
+bbox AP:99.1561, 99.1561, 99.1561
+bev  AP:91.1027, 91.1027, 91.1027
+3d   AP:84.5493, 84.5493, 84.5493
+aos  AP:92.36, 92.36, 92.36
+Car AP@0.70, 0.50, 0.50:
+bbox AP:98.7632, 98.7632, 98.7632
+bev  AP:90.5653, 90.5653, 90.5653
+3d   AP:90.2661, 90.2661, 90.2661
+aos  AP:92.62, 92.62, 92.62
+Car AP_R40@0.70, 0.50, 0.50:
+bbox AP:99.1561, 99.1561, 99.1561
+bev  AP:94.2288, 94.2288, 94.2288
+3d   AP:93.7375, 93.7375, 93.7375
+aos  AP:92.36, 92.36, 92.36
+
+2023-05-23 12:27:58,604   INFO  Result is saved to /root/autodl-tmp/OpenPCDet/output/custom_models/pillarnet/18/eval/epoch_100/val/default
+2023-05-23 12:27:58,605   INFO  ****************Evaluation done.*****************
